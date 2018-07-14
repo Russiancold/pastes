@@ -1,20 +1,32 @@
 package pastes.entities;
 
-public class Paste {
+import javax.persistence.*;
+import java.io.Serializable;
 
-    private final long id;
-    private final String content;
+@Entity
+@Table(name = "pastes")
+public class Paste implements Serializable{
 
-    public Paste(long id, String content) {
-        this.id = id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    private String content;
+
+    protected Paste(){}
+
+    public Paste(String content) {
         this.content = content;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getContent() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        return "Paste{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                '}';
     }
 }
